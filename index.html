@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#070706" />
+    <title>War Room — Decision Command Center</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <a class="brand" href="#dashboard"><span class="brand-mark">W</span><span>WAR ROOM<small>DECISION INTELLIGENCE</small></span></a>
+        <nav>
+          <button class="nav-item active" data-view="dashboard"><span>⊞</span>Command Center</button>
+          <button class="nav-item" data-view="history"><span>◷</span>Decision Archive</button>
+          <button class="nav-item" data-view="agents"><span>◎</span>Agent Roster</button>
+          <button class="nav-item" data-view="settings"><span>⚙</span>Settings</button>
+        </nav>
+        <div class="sidebar-footer"><div class="presence"></div><div><strong>System nominal</strong><small>7 agents available</small></div></div>
+      </aside>
+      <main>
+        <header><div class="breadcrumb"><span>COMMAND CENTER</span><i>/</i><strong id="page-label">OVERVIEW</strong></div><div class="header-actions"><span class="date" id="today"></span><button class="icon-button" aria-label="Notifications">◌</button><div class="avatar">CO</div></div></header>
+
+        <section id="dashboard" class="view active">
+          <div class="hero"><div><p class="eyebrow"><span class="signal-dot"></span>DECISION INTELLIGENCE PLATFORM / ONLINE</p><h1>Clarity for decisions<br/>that <em>matter.</em></h1><p class="lede">Deploy a council of specialized agents to pressure-test your most consequential choices.</p></div><div class="hero-controls"><div class="system-stamp"><span>COUNCIL</span><strong>07</strong><small>ACTIVE AGENTS</small></div><button class="primary" data-open-new>+ &nbsp;New Decision</button></div></div>
+          <div class="metrics"><article><span>ACTIVE DECISIONS</span><strong id="active-count">02</strong><small class="up">↑ 1 this week</small></article><article><span>DECISION ACCURACY</span><strong>78<span>%</span></strong><small>Across 14 tracked outcomes</small></article><article><span>COUNCIL CONSENSUS</span><strong>64<span>%</span></strong><small>Current decision average</small></article><article><span>AGENT COVERAGE</span><strong>7<span>/7</span></strong><small class="up">All systems operational</small></article></div>
+          <div class="grid-two"><section class="panel recent"><div class="panel-heading"><div><p class="eyebrow">ACTIVE BRIEFS</p><h2>Current Decisions</h2></div><button class="text-button" data-view-target="history">View archive →</button></div><div id="decision-list"></div></section><section class="panel priorities"><div class="panel-heading"><div><p class="eyebrow">SIGNAL BOARD</p><h2>Current Priorities</h2></div></div><div class="priority"><span>Financial resilience</span><b>28%</b><div><i style="width:28%"></i></div></div><div class="priority"><span>Career trajectory</span><b>24%</b><div><i style="width:24%"></i></div></div><div class="priority"><span>Opportunity exposure</span><b>20%</b><div><i style="width:20%"></i></div></div><div class="priority"><span>Personal sustainability</span><b>16%</b><div><i style="width:16%"></i></div></div><p class="panel-note">Priorities are calculated across active briefs. Adjust them in any decision profile.</p></section></div>
+          <section class="panel agent-performance"><div class="panel-heading"><div><p class="eyebrow">HISTORICAL CALIBRATION</p><h2>Agent Performance</h2></div><span class="muted">Small samples are marked accordingly</span></div><div id="agent-performance"></div></section>
+        </section>
+
+        <section id="new-decision" class="view"><div class="view-title"><div><p class="eyebrow">NEW INTELLIGENCE BRIEF</p><h1>Frame the decision.</h1><p>Give the council enough context to challenge your assumptions, not just agree with them.</p></div></div><form id="decision-form" class="brief-form"><div class="form-card"><label>Decision title<input required name="title" placeholder="e.g. Accept the VP role in Chicago" /></label><label>The question<textarea required name="question" placeholder="What decision are you trying to make?"></textarea></label><label>Context<textarea name="context" placeholder="The situation, relevant history, and important facts."></textarea></label><div class="form-grid"><label>Desired outcome<input name="outcome" placeholder="What does success look like?" /></label><label>Deadline<input name="deadline" type="date" /></label><label>Budget<input name="budget" placeholder="e.g. $40,000 / year" /></label><label>Relevant people<input name="people" placeholder="Who is affected?" /></label></div><label>What are you worried about?<textarea name="worry" placeholder="Name the risks or trade-offs keeping you up."></textarea></label><label>What do you currently believe?<textarea name="belief" placeholder="Your tentative point of view — the council will challenge it."></textarea></label></div><aside class="weight-card"><div class="panel-heading"><div><p class="eyebrow">DECISION PRIORITIES</p><h2>Weight the criteria</h2></div><strong id="weight-total">100%</strong></div><p>These weights make the score transparent—not objective truth.</p><div id="weight-inputs"></div><div class="form-actions"><button type="button" class="secondary" data-view-target="dashboard">Cancel</button><button class="primary" type="submit">Launch analysis →</button></div></aside></form></section>
+
+        <section id="war-room" class="view"><div class="war-header"><div><p class="eyebrow">LIVE WAR ROOM <span class="live-dot">●</span></p><h1 id="war-title">Decision analysis</h1><p id="war-question"></p></div><button class="secondary" data-view-target="dashboard">Exit room</button></div><div class="pipeline" id="pipeline"></div><div class="war-grid"><section class="panel council"><div class="panel-heading"><div><p class="eyebrow">INDEPENDENT ASSESSMENTS</p><h2>Council signal</h2></div><span id="analysis-state" class="status queued">QUEUED</span></div><div id="agent-cards"></div></section><aside class="panel intelligence"><p class="eyebrow">ANALYSIS PROTOCOL</p><h3>Every conclusion is pressure-tested.</h3><ol><li>Independent views</li><li>Surface disagreements</li><li>Challenge assumptions</li><li>Chairman synthesis</li></ol><div class="intel-callout"><span>IMPORTANT</span>Scores are analytical estimates, not factual predictions.</div></aside></div><section id="verdict-panel" class="verdict panel hidden"></section></section>
+
+        <section id="history" class="view"><div class="view-title"><div><p class="eyebrow">DECISION ARCHIVE</p><h1>Institutional memory.</h1><p>Track recommendations against what actually happened.</p></div><button class="primary" data-open-new>+ &nbsp;New Decision</button></div><section class="panel archive"><div id="archive-list"></div></section></section>
+        <section id="agents" class="view"><div class="view-title"><p class="eyebrow">COUNCIL ROSTER</p><h1>Specialists with distinct mandates.</h1></div><div id="roster" class="roster"></div></section>
+        <section id="settings" class="view"><div class="view-title"><p class="eyebrow">SYSTEM CONFIGURATION</p><h1>Settings</h1></div><section class="panel settings"><h3>Production integrations</h3><p>This local MVP uses a deterministic simulation engine. Add secure server-side AI and database credentials in your deployment environment to activate persistent multi-user analysis.</p><div class="setting-row"><span>Analysis mode</span><b>Local simulation</b></div><div class="setting-row"><span>Data storage</span><b>Browser local storage</b></div></section></section>
+      </main>
+    </div>
+    <div id="modal" class="modal" aria-hidden="true"><div class="modal-card"><button id="close-modal" class="close">×</button><p class="eyebrow">WHAT IF SIMULATOR</p><h2>Stress-test the verdict.</h2><p>Change a condition and see how it shifts the analytical estimate.</p><label>Financial pressure <input id="sim-finance" type="range" min="-20" max="20" value="0" /><output id="sim-finance-out">0</output></label><label>Career upside <input id="sim-career" type="range" min="-20" max="20" value="0" /><output id="sim-career-out">0</output></label><label>Risk tolerance <input id="sim-risk" type="range" min="-20" max="20" value="0" /><output id="sim-risk-out">0</output></label><div class="sim-result"><span>ORIGINAL <b id="orig-score">—</b></span><i></i><span>SIMULATED <b id="sim-score">—</b></span></div><button id="run-sim" class="primary">Run simulation</button></div></div>
+    <script src="app.js"></script>
+  </body>
+</html>
